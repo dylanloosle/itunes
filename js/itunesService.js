@@ -25,13 +25,15 @@ app.service('itunesService', function($http, $q){
                 Play: response.data.results.trackViewUrl,
                 Type: response.data.results.kind
             };
-            var myFinalArray = [];
-            for(var i = 0; i < newItem.length; i++){
+            for(var i = 0; i < response.length; i++){
                 myFinalArray.push(newItem[i]);
             }
+
         });
         return deferred.promise;
 
-
     };
+
+
 });
+var myFinalArray = [];

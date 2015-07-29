@@ -33,7 +33,7 @@ app.controller('mainCtrl', function($scope, itunesService){
     $scope.artist = '';
 $scope.getSongData = function(){
     itunesService.getData($scope.artist).then(function(response){
-        return(response);
+        console.log(response);
     })
 };
 
