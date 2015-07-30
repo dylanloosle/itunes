@@ -11,26 +11,34 @@ app.service('itunesService', function($http, $q){
 
     //Code here
 
-    this.getData = function(artist) {
+    this.getSongs = function(artist) {
         var deferred = $q.defer();
         $http({
             method: 'JSONP',
             url: 'https://itunes.apple.com/search?term=' + artist + '&callback=JSON_CALLBACK'
         }).then(function(response){
-            var newItem = {
-                AlbumArt: response.data.results.collectionViewUrl,
-                Artist: response.data.results.artistName,
-                Collection: response.data.results.collectionName,
-                CollectionPrice: response.data.results.collectionPrice,
-                Play: response.data.results.trackViewUrl,
-                Type: response.data.results.kind
-            };
-            for(var i = 0; i < response.length; i++){
-                myFinalArray.push(newItem[i]);
+            console.log(response);
+
+            var data = response.data.results;
+            var formattedData = [];
+            for(var i = 0; i < data.length; i++){
+               var newItem = {
+                    Play: data[i].previewUrl,
+                   Artist: data[i].artistName,
+                    Collection: data[i].collectionCensoredName,
+                    AlbumArt: data[i].artworkUrl100,
+                    Type: data[i].kind,
+                    CollectionPrice: data[i].collectionPrice
+                };
+                formattedData.push(newItem);
+
             }
+            deferred.resolve(formattedData);
+
 
         });
         return deferred.promise;
+
 
     };
 
