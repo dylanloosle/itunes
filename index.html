@@ -16,9 +16,16 @@
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" ng-change="getSongData()"class="form-control" ng-model="artist" placeholder="Artist Name" >
+              <select ng-options="values" ng-model="selected"></select>
               <button class="btn btn-primary"> Submit </button>
             </div>
           </form>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="filter" placeholder="filter results"/>
+            </div>
+          </form>
+
         </div>
       </div>
     </div>

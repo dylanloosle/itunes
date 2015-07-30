@@ -44,4 +44,3 @@ app.service('itunesService', function($http, $q){
 
 
 });
-var myFinalArray = [];
